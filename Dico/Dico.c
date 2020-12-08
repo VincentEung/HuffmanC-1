@@ -1,7 +1,7 @@
 #include <stdio.h>
 #include <stdlib.h>
-#include "HuffmanTree.h"
-#include "Dico.h"
+#include "../HuffmanTree/HuffmanTree.h"
+#include "../Dico/Dico.h"
 
 
 
@@ -12,7 +12,7 @@ void conversion_bin (char* path){///A
     int lettre = 0,i = 0;
     texte = fopen(path,"r");
     result = fopen("result.txt","w+");
-    lettre = fgetc(texte); // On lit le caractère
+    lettre = fgetc(texte); // On lit le caractÃ¨re
     do
     {
         for( i=0; lettre > 0; i++)
@@ -29,7 +29,7 @@ void conversion_bin (char* path){///A
             fprintf(result,"%d",tab[i]);
 
 
-        lettre = fgetc(texte); // On lit le caractère
+        lettre = fgetc(texte); // On lit le caractÃ¨re
     } while (lettre != EOF);
     fclose(texte);
     fclose(result);
@@ -40,10 +40,10 @@ void nb_char(){///B
     FILE* texte = NULL;
     texte = fopen("result.txt","r");
 
-    int lettre = 0, compteur = -1; // Le compteur est à -1 car le dernier caractère EOF est compté à la fin
+    int lettre = 0, compteur = -1; // Le compteur est Ã  -1 car le dernier caractÃ¨re EOF est comptÃ© Ã  la fin
     do
     {
-        lettre = fgetc(texte); // On lit le caractère
+        lettre = fgetc(texte); // On lit le caractÃ¨re
         compteur++;
     } while (lettre != EOF);
 
@@ -51,23 +51,23 @@ void nb_char(){///B
     printf("nbr chara : %d\n",compteur);
 }
 
-void Afficher(noeudModif* noeudCurseur, stack* ps, int n, stack* refps,LSC *l,int* pi){ /// il faut utiliser une pile : dès qu'on monte on ajoute dans la pile et inversement on dépile.
+void Afficher(noeudModif* noeudCurseur, stack* ps, int n, stack* refps,LSC *l,int* pi){ /// il faut utiliser une pile : dÃ¨s qu'on monte on ajoute dans la pile et inversement on dÃ©pile.
 
     if (noeudCurseur==NULL);
-    else {  /// parcours en préfixe car on veut connaitre le chemin du maillon donc les parents d'abords
+    else {  /// parcours en prÃ©fixe car on veut connaitre le chemin du maillon donc les parents d'abords
         if (noeudCurseur->sag!=NULL){
-            sPush(1,ps);/// dès qu'on se déplace à gauche on traduit ça par 1 en binaire
+            sPush(1,ps);/// dÃ¨s qu'on se dÃ©place Ã  gauche on traduit Ã§a par 1 en binaire
             Afficher(noeudCurseur->sag,ps,n,refps,l,pi);
-            sPop(ps);///dès qu'on sort de la fenêtre précédente cela signifit que nous avons "monté" dans l'arbre donc on enlève le chemin
+            sPop(ps);///dÃ¨s qu'on sort de la fenÃªtre prÃ©cÃ©dente cela signifit que nous avons "montÃ©" dans l'arbre donc on enlÃ¨ve le chemin
         }
         if (noeudCurseur->sad!=NULL){
-            sPush(0,ps); /// dès qu'on se déplace à droite on traduit ça par 0 en binaire
+            sPush(0,ps); /// dÃ¨s qu'on se dÃ©place Ã  droite on traduit Ã§a par 0 en binaire
             Afficher(noeudCurseur->sad,ps,n,refps,l,pi);
-            sPop(ps);///dès qu'on sort de la fenêtre précédente cela signifit que nous avons "monté" dans l'arbre donc on enlève le chemin
+            sPop(ps);///dÃ¨s qu'on sort de la fenÃªtre prÃ©cÃ©dente cela signifit que nous avons "montÃ©" dans l'arbre donc on enlÃ¨ve le chemin
         }
         if ((noeudCurseur->sad==NULL)&&(noeudCurseur->sag==NULL)){
             n=0;
-            while (n<*pi){///on utilise un pointeur sur pi pour savoir où il faut commencer à ecrire
+            while (n<*pi){///on utilise un pointeur sur pi pour savoir oÃ¹ il faut commencer Ã  ecrire
                 l=l->succ;
                 n++;
             }
@@ -75,10 +75,10 @@ void Afficher(noeudModif* noeudCurseur, stack* ps, int n, stack* refps,LSC *l,in
             l->numero=0;
             l=l->succ;
             (*pi)++;
-            while (isEmptyStack(*ps)==0){ /// on utilise deux pile pour pouvoir extraire les données de la pile ps avec l'aide de la pile refps
+            while (isEmptyStack(*ps)==0){ /// on utilise deux pile pour pouvoir extraire les donnÃ©es de la pile ps avec l'aide de la pile refps
                 n = sPop(ps); /// donc ici on vide la pile ps
                 sPush(n,refps); /// ici on remplie refps
-                l->numero=n; /// on extrait les données pour les mettres dans notre LSC
+                l->numero=n; /// on extrait les donnÃ©es pour les mettres dans notre LSC
                 l=l->succ;
                 (*pi)++;
             }
