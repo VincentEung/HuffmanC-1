@@ -1,6 +1,6 @@
 #include <stdio.h>
 #include <stdlib.h>
-#include "D_Compress.h"
+#include "../D_compress/D_Compress.h"
 
 
 void decodage()
@@ -91,11 +91,11 @@ void creationFichierCodage()
                 if (texteFinal!=NULL)
                 {
                     char caractere;
-                    caractere=fgetc(texte);///on crée le curseur qui lit le texte a traduire
+                    caractere=fgetc(texte);///on crÃ©e le curseur qui lit le texte a traduire
 
                     while (caractere!=EOF)
                     {
-                        char pointeurDicoLettre;///on crée le curseur qui lit et cherche le code
+                        char pointeurDicoLettre;///on crÃ©e le curseur qui lit et cherche le code
                         char pointeurDicoCode[9];
                         //pointeurDicoLettre=fgetc(dico);
                         fscanf(dico,"%c%*[\n]",&pointeurDicoLettre);
