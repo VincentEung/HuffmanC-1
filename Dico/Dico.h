@@ -1,8 +1,8 @@
 #ifndef DICO_H_INCLUDED
 #define DICO_H_INCLUDED
-#include "Stack.h"
+#include "../Stack/Stack.h"
 
-///------------------------------------------SDD spéciale aux branches
+///------------------------------------------SDD spÃ©ciale aux branches
 
 typedef struct LSC
 {
