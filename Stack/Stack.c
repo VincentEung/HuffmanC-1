@@ -1,6 +1,6 @@
 #include <stdio.h>
 #include <stdlib.h>
-#include "Stack.h"
+#include "../Stack/Stack.h"
 
 
 stack *newEmptyStack()
